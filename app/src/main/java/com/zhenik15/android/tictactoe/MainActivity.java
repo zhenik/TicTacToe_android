@@ -3,6 +3,7 @@ package com.zhenik15.android.tictactoe;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,9 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String name1 = player1.getText().toString();
                 String name2 = player2.getText().toString();
                 if (isUserNamesValid(name1,name2)){
+                    Log.i(TAG, ": names :"+player1.getText() + "  -  " + player2.getText());
                     Intent intent = new Intent(getBaseContext(), GameActivity.class);
-                    intent.putExtra("userName1", player1.getText());
-                    intent.putExtra("userName2", player2.getText());
+                    intent.putExtra("userName1", name1);
+                    intent.putExtra("userName2", name2);
                     startActivity(intent);
                 }
                 else{
