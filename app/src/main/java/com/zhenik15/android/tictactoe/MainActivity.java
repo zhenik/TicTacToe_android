@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private boolean isUserNamesValid(String name1, String name2){
-        if (!name1.isEmpty() && !name1.isEmpty())return true;
+        boolean valid = !name1.isEmpty() && !name1.isEmpty() && !"".equals(name1) && !"".equals(name2);
+        if (valid)return true;
         return false;
     }
 }
