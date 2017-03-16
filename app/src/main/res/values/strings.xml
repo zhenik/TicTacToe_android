@@ -6,4 +6,5 @@
     <string name="start_game_text">Start game</string>
     <string name="cross_icon_img_description">cross icon</string>
     <string name="zero_icon_img_description">zero icon</string>
+    <string name="space">" "</string>
 </resources>
