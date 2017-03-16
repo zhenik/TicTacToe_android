@@ -8,4 +8,26 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clickable">true</item>
+        <!--<item name="android:background">@color/colorAccent</item>-->
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="Cell">
+        <item name="android:height">100dp</item>
+        <item name="android:width">100dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">74sp</item>
+        <item name="android:background">@drawable/cell_border</item>
+        <item name="android:maxWidth">100dp</item>
+        <item name="android:text">""</item>
+        <item name="android:clickable">true</item>
+    </style>
+
 </resources>
