@@ -13,6 +13,7 @@
         android:baselineAligned="false">
 
         <RelativeLayout
+            android:id="@+id/game_player1_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -26,8 +27,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
                 android:layout_gravity="top|center_horizontal"
-                app:srcCompat="@android:drawable/btn_dialog"
-                android:contentDescription="@string/cross_icon_img_description"/>
+                android:contentDescription="@string/cross_icon_img_description"
+                app:srcCompat="@android:drawable/btn_dialog"/>
 
             <TextView
                 android:id="@+id/game_player1_name"
@@ -40,6 +41,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/game_player2_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -53,8 +55,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
                 android:layout_gravity="top|center_horizontal"
-                app:srcCompat="@android:drawable/btn_dialog"
-                android:contentDescription="@string/zero_icon_img_description"/>
+                android:contentDescription="@string/zero_icon_img_description"
+                app:srcCompat="@android:drawable/btn_dialog"/>
 
             <TextView
                 android:id="@+id/game_player2_name"
@@ -68,12 +70,95 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <TableLayout
         android:id="@+id/game_board"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         >
-    </LinearLayout>
+
+        <TableRow
+            android:id="@+id/row1"
+            style="@style/Row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/cell_11"
+                style="@style/Cell"
+                android:layout_column="0">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/cell_12"
+                style="@style/Cell"
+                android:layout_column="1">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/cell_13"
+                style="@style/Cell"
+                android:layout_column="2">
+            </TextView>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row2"
+            style="@style/Row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/cell_21"
+                style="@style/Cell"
+                android:layout_column="0">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/cell_22"
+                style="@style/Cell"
+                android:layout_column="1">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/cell_23"
+                style="@style/Cell"
+                android:layout_column="2">
+            </TextView>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row3"
+            style="@style/Row"
+            >
+
+            <TextView
+                android:id="@+id/cell_31"
+                style="@style/Cell"
+                android:layout_column="0">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/cell_32"
+                style="@style/Cell"
+                android:layout_column="1">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/cell_33"
+                style="@style/Cell"
+                android:layout_column="2">
+            </TextView>
+
+        </TableRow>
+
+    </TableLayout>
 
 </LinearLayout>
