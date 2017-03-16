@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--http://stackoverflow.com/questions/2108456/how-can-i-create-a-table-with-borders-in-android-->
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape= "rectangle"  >
+    <solid android:color="#bef49a"/>
+    <stroke android:width="2dp"
+            android:color="#46e2cd"/>
+</shape>
