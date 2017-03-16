@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zhenik15.android.tictactoe.MainActivity">
+
+    <TextView
+        android:id="@+id/main_game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="@string/tic_tac_toe"
+        android:textAlignment="center"
+        android:textSize="24sp"/>
+
+    <EditText
+        android:id="@+id/main_player1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:ems="10"
+        android:hint="@string/player_1_name"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+        android:id="@+id/main_player2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/main_player1"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:hint="@string/player_2_name"
+        android:inputType="textPersonName"
+        />
+
+    <Button
+        android:id="@+id/main_start_game_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_player2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:text="@string/start_game_text"/>
+
+
+</RelativeLayout>
