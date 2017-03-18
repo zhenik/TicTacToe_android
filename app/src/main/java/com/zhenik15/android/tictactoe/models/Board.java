@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class Board implements Serializable{
 
-    public static final String TAG = "BoardTag";
+    public static final String TAG = "Board:> ";
 
     private char[][] table;
     private int turnCounter;
@@ -15,15 +15,7 @@ public class Board implements Serializable{
         table = new char[3][3];
     }
 
-    public void resetGameBoard(){
-        turnCounter=0;
-        for(int i = 0; i<3; i++){
-            for(int j = 0; j<3; j++){
-                table[i][j] = ' ';
-                Log.i(TAG, "|"+ table[i][j]+"|");
-            }
-        }
-    }
+
 
     public char[][] getTable() {
         return table;
@@ -35,5 +27,9 @@ public class Board implements Serializable{
 
     public int getTurnCounter() {
         return turnCounter;
+    }
+
+    public void setTurnCounter(int counter){
+        this.turnCounter=counter;
     }
 }
