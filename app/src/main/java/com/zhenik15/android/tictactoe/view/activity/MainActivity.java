@@ -10,13 +10,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.zhenik15.android.tictactoe.R;
+import com.zhenik15.android.tictactoe.models.Player;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String TAG = "MainActivityTag";
+    public static final String TAG = "MainActivity:> ";
     private Button startGameBtn;
-    private EditText player1;
-    private EditText player2;
+    private EditText player1Name;
+    private EditText player2Name;
 
 
     @Override
@@ -27,8 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initAllElements(){
-        player1=(EditText)findViewById(R.id.main_player1);
-        player2=(EditText)findViewById(R.id.main_player2);
+        player1Name =(EditText)findViewById(R.id.main_player1);
+        player2Name =(EditText)findViewById(R.id.main_player2);
         initButton();
     }
     private void initButton(){
@@ -41,13 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.main_start_game_btn:
 
-                String name1 = player1.getText().toString();
-                String name2 = player2.getText().toString();
+                String name1 = player1Name.getText().toString();
+                String name2 = player2Name.getText().toString();
                 if (isUserNamesValid(name1,name2)){
-                    Log.i(TAG, ": names :"+player1.getText() + "  -  " + player2.getText());
+                    Log.i(TAG, ": names :"+ player1Name.getText() + "  -  " + player2Name.getText());
                     Intent intent = new Intent(getBaseContext(), GameActivity.class);
-                    intent.putExtra("userName1", name1);
-                    intent.putExtra("userName2", name2);
+                    intent.putExtra("player1", new Player(name1));
+                    intent.putExtra("player2", new Player(name2));
                     startActivity(intent);
                 }
                 else{
