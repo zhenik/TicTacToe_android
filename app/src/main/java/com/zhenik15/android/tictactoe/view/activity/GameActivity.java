@@ -1,31 +1,37 @@
-package com.zhenik15.android.tictactoe;
+package com.zhenik15.android.tictactoe.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.zhenik15.android.tictactoe.R;
+import com.zhenik15.android.tictactoe.controller.GameController;
+import com.zhenik15.android.tictactoe.models.Board;
 
 
 public class GameActivity extends AppCompatActivity{
 
     public static final String TAG = "GameActivityTag";
 
+    private GameController gameController;
+    private Board gameBoard;
     private String playerName1;
     private String playerName2;
 
     private TextView player1;
     private TextView player2;
 
-    private char[][] gameBoard;
-    private int turnCounter;
+//    private char[][] gameBoard;
+//    private int turnCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
+
 
         initPlayerNames();
         initGameBoard();
@@ -43,57 +49,20 @@ public class GameActivity extends AppCompatActivity{
     }
 
     protected void initGameBoard() {
-        gameBoard=new char[3][3];
+        gameBoard = new Board();
+        gameController = new GameController(gameBoard);
         Log.i(TAG, ": after init "+gameBoard.toString());
-        resetGameBoard();
-//        Log.i(TAG, ": after reset "+ gameBoard);
+        gameBoard.resetGameBoard();
+        Log.i(TAG, ": after reset "+ gameBoard);
         TableLayout table = (TableLayout)findViewById(R.id.game_board);
+
         for(int i = 0; i<table.getChildCount(); i++){
             TableRow row = (TableRow) table.getChildAt(i);
             for(int j = 0; j<row.getChildCount(); j++){
                 TextView cell = (TextView) row.getChildAt(j);
-//                cell.setText(R.string.space);
-                cell.setOnClickListener(move(i, j, cell));
+                cell.setOnClickListener(gameController.getGameClickListener(i, j, cell));
                 Log.i(TAG, " : set up listener for "+cell.getText()+i+j);
             }
         }
-    }
-
-    protected void resetGameBoard(){
-        turnCounter=0;
-        for(int i = 0; i<3; i++){
-            for(int j = 0; j<3; j++){
-                gameBoard[i][j] = ' ';
-                Log.i(TAG, "|"+gameBoard[i][j]+"|");
-            }
-        }
-    }
-
-    private boolean isCellAvailable(int i, int j){
-        return gameBoard[i][j]==' ';
-    }
-
-    private char nextTurn(){
-        turnCounter++;
-        if (turnCounter%2==0)return 'O';
-        return 'X';
-    }
-
-
-    //http://stackoverflow.com/questions/10614696/how-to-pass-parameters-to-onclicklistener/10614751
-    private View.OnClickListener move(final int i, final int j, final TextView cell1){
-        return new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-                if(isCellAvailable(i,j)) {
-                    gameBoard[i][j]='X';
-                    Log.i(TAG,": click cell "+ i+j + " : "+gameBoard[i][j]);
-                    cell1.setText("X");
-                }
-
-//                cell1.setText('X');
-            }
-        };
     }
 }
