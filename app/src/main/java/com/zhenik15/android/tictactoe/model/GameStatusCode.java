@@ -1,4 +1,4 @@
-package com.zhenik15.android.tictactoe.models;
+package com.zhenik15.android.tictactoe.model;
 
 import java.io.Serializable;
 
