@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/game_player1_name"
-                android:text="TextView"
+                android:text=""
                 android:textAlignment="center"/>
         </RelativeLayout>
 
@@ -81,7 +81,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/game_player2_name"
-                android:text="TextView"
                 android:textAlignment="center"/>
         </RelativeLayout>
 
@@ -182,6 +181,7 @@
         android:id="@+id/game_nav_panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:visibility="visible">
 

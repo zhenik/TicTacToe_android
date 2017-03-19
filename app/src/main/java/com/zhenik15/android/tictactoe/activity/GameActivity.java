@@ -1,6 +1,7 @@
-package com.zhenik15.android.tictactoe.controller;
+package com.zhenik15.android.tictactoe.activity;
 
-import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TableLayout;
@@ -8,47 +9,89 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zhenik15.android.tictactoe.models.Board;
-import com.zhenik15.android.tictactoe.models.GameInfoService;
-import com.zhenik15.android.tictactoe.models.GameStatusCode;
+import com.zhenik15.android.tictactoe.R;
+import com.zhenik15.android.tictactoe.model.Board;
+import com.zhenik15.android.tictactoe.model.GameStatusCode;
+import com.zhenik15.android.tictactoe.model.Player;
 
-import java.io.Serializable;
 
+public class GameActivity extends AppCompatActivity{
 
-public class GameController implements Serializable {
+    public static final String TAG = "GameActivity:> ";
 
-    public static final String TAG = "GameController:> ";
+    // Views
+    private TextView scorePlayer1;
+    private TextView scorePlayer2;
+    private View navigation;
 
+    // Models
+    private Board gameBoard;
+    private Player player1;
+    private Player player2;
+
+    // Game
     private final char X = 'X';
     private final char O = 'O';
     private final char EMPTY = ' ';
-
-    private Board board;
-    private Context context;
-    private GameInfoService gameInfoService;
     private int turnCounter;
 
-    public GameController(Board board, Context context, GameInfoService gameInfoService){
-        this.board=board;
-        this.context =context;
-        this.gameInfoService = gameInfoService;
 
-//        this.gameInfoService.initNames();
-//        this.gameInfoService.showNavigationButtons();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.game_activity);
+
+        initPlayers();
+        initBoard();
+        initNavigation();
+        navigation.setVisibility(View.INVISIBLE);
     }
+
+    private void initPlayers(){
+        player1 = (Player) getIntent().getSerializableExtra("player1");
+        player2 = (Player) getIntent().getSerializableExtra("player2");
+
+        ((TextView)findViewById(R.id.game_player1_name)).setText(player1.getName());
+        ((TextView)findViewById(R.id.game_player2_name)).setText(player2.getName());
+
+        scorePlayer1=(TextView)findViewById(R.id.game_player1_score);
+        scorePlayer2=(TextView)findViewById(R.id.game_player2_score);
+        updateScore();
+
+    }
+
+    private void setScore(TextView scoreView, Player player){
+        scoreView.setText("Score: "+player.getScore());
+    }
+
+    private void updateScore(){
+        setScore(scorePlayer1, player1);
+        setScore(scorePlayer2, player2);
+    }
+
+    private void initNavigation(){
+        navigation= findViewById(R.id.game_nav_panel);
+    }
+    private void initBoard(){
+        TableLayout table = (TableLayout)findViewById(R.id.game_board);
+        gameBoard=new Board(table);
+        resetGameBoard();
+        setCellListeners();
+    }
+
 
     public void resetGameBoard(){
         turnCounter=0;
         for(int i = 0; i<3; i++){
             for(int j = 0; j<3; j++){
-                board.getTable()[i][j] = EMPTY;
-                Log.i(TAG, "|"+ board.getTable()[i][j]+"|");
+                gameBoard.getTable()[i][j] = EMPTY;
+                Log.i(TAG, "|"+ gameBoard.getTable()[i][j]+"|");
             }
         }
     }
 
     private boolean isCellAvailable(int i, int j){
-        return board.getTable()[i][j]==EMPTY;
+        return gameBoard.getTable()[i][j]==EMPTY;
     }
 
     private char nextTurn(){
@@ -59,7 +102,7 @@ public class GameController implements Serializable {
 
 
     public void setCellListeners(){
-        TableLayout table = board.getTableLayout();
+        TableLayout table = gameBoard.getTableLayout();
         for(int i = 0; i<table.getChildCount(); i++){
             TableRow row = (TableRow) table.getChildAt(i);
             for(int j = 0; j<row.getChildCount(); j++){
@@ -69,9 +112,9 @@ public class GameController implements Serializable {
             }
         }
     }
-    private void unsetClickListeners(){
-        for(int i = 0; i<board.getTableLayout().getChildCount(); i++){
-            TableRow row = (TableRow) board.getTableLayout().getChildAt(i);
+    private void unsetCellListeners(){
+        for(int i = 0; i<gameBoard.getTableLayout().getChildCount(); i++){
+            TableRow row = (TableRow) gameBoard.getTableLayout().getChildAt(i);
             for(int j = 0; j<row.getChildCount(); j++){
                 TextView cell = (TextView) row.getChildAt(j);
                 cell.setOnClickListener(null);
@@ -91,22 +134,22 @@ public class GameController implements Serializable {
                 if(isCellAvailable(i,j)) {
 //                    char turnSymbol=nextTurn();
 //                    Log.i(TAG, "|turn=|"+turnSymbol+"|");
-                    board.getTable()[i][j]=turnSymbol;
+                    gameBoard.getTable()[i][j]=turnSymbol;
 //                    Log.i(TAG,": click cell "+ i+j + " : "+gameBoard[i][j]);
                     cell.setText(String.valueOf(turnSymbol));
                 }
 
                 switch (checkGameState(turnSymbol)){
                     case GameStatusCode.DRAW:
-                        Toast.makeText(context, "DRAW", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "DRAW", Toast.LENGTH_SHORT).show();
                         stopGame(GameStatusCode.DRAW);
                         break;
                     case GameStatusCode.X_WIN:
-                        Toast.makeText(context, "X_WIN", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "X_WIN", Toast.LENGTH_SHORT).show();
                         stopGame(GameStatusCode.X_WIN);
                         break;
                     case GameStatusCode.O_WIN:
-                        Toast.makeText(context, "O_WIN", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "O_WIN", Toast.LENGTH_SHORT).show();
                         stopGame(GameStatusCode.O_WIN);
                         break;
                 }
@@ -148,7 +191,7 @@ public class GameController implements Serializable {
         for (int j = 0; j<3; j++){
             int symbolCounter=0;
             for(int i = 0; i<3; i++){
-                if(board.getTable()[j][i]==turn)
+                if(gameBoard.getTable()[j][i]==turn)
                     symbolCounter++;
             }
             if(symbolCounter==3)
@@ -161,7 +204,7 @@ public class GameController implements Serializable {
         for (int j = 0; j<3; j++){
             int symbolCounter=0;
             for(int i = 0; i<3; i++){
-                if(board.getTable()[i][j]==turn)
+                if(gameBoard.getTable()[i][j]==turn)
                     symbolCounter++;
             }
             if(symbolCounter==3)
@@ -174,27 +217,35 @@ public class GameController implements Serializable {
         int count1 = 0;
         int count2 = 0;
         for(int i = 0; i<3; i++) {
-            if(board.getTable()[i][i]==turn)
+            if(gameBoard.getTable()[i][i]==turn)
                 count1++;
         }
 
         for(int i = 0; i<3; i++){
-            if(board.getTable()[i][3-1-i]==turn)
+            if(gameBoard.getTable()[i][3-1-i]==turn)
                 count2++;
         }
         return (count1==3||count2==3);
     }
 
-
     private void stopGame(int statusCode){
-        unsetClickListeners();
+        unsetCellListeners();
         switch (statusCode){
             case GameStatusCode.DRAW:
+                navigation.setVisibility(View.VISIBLE);
                 break;
-
+            case GameStatusCode.O_WIN:
+                player1.win();
+                updateScore();
+                navigation.setVisibility(View.VISIBLE);
+                break;
+            case GameStatusCode.X_WIN:
+                player2.win();
+                updateScore();
+                navigation.setVisibility(View.VISIBLE);
+                break;
         }
+
     }
-
-
 
 }

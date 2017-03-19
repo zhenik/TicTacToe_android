@@ -1,6 +1,5 @@
-package com.zhenik15.android.tictactoe.models;
+package com.zhenik15.android.tictactoe.model;
 
-import android.util.Log;
 import android.widget.TableLayout;
 
 import java.io.Serializable;
