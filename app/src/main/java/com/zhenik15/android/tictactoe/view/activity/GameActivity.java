@@ -52,7 +52,7 @@ public class GameActivity extends AppCompatActivity{
     private void initGameBoard() {
         TableLayout table = (TableLayout)findViewById(R.id.game_board);
 
-        gameController = new GameController(new Board());
+        gameController = new GameController(new Board(), getApplicationContext());
         gameController.resetGameBoard();
         gameController.setCellListeners(table);
     }
