@@ -190,21 +190,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="New match"/>
+            android:text="@string/new_match"/>
 
         <Button
             android:id="@+id/game_btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Save"/>
+            android:text="@string/save"/>
 
         <Button
             android:id="@+id/game_btn_exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Exit"/>
+            android:text="@string/exit"/>
     </LinearLayout>
 
 </LinearLayout>
