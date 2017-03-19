@@ -1,4 +1,4 @@
-package com.zhenik15.android.tictactoe.models;
+package com.zhenik15.android.tictactoe.model;
 import java.io.Serializable;
 
 public class Player implements Serializable {
@@ -19,7 +19,7 @@ public class Player implements Serializable {
         return score;
     }
 
-    public void win(){
-        score++;
+    public int win(){
+        return ++score;
     }
 }
