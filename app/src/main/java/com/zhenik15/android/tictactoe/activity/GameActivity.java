@@ -144,12 +144,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * NAVIGATION BAR
      * */
+
     private void setListenerNavigationButtons(){
         for (int i=0;i<navigation.getChildCount();i++){
             navigation.getChildAt(i).setOnClickListener(this);
         }
     }
 
+    // TODO: implement save button
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -162,6 +164,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.game_btn_exit:
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.game_btn_save:
+                Log.i(TAG, "save to file");
                 break;
         }
     }
