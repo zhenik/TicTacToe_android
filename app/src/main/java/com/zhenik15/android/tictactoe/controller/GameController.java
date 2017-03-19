@@ -20,8 +20,10 @@ public class GameController implements Serializable {
 
     private Board board;
     private Context context;
+
     private final char X = 'X';
     private final char O = 'O';
+    private int turnCounter;
 
     public GameController(Board board, Context context){
 
@@ -30,7 +32,7 @@ public class GameController implements Serializable {
     }
 
     public void resetGameBoard(){
-        board.setTurnCounter(0);
+        turnCounter=0;
         for(int i = 0; i<3; i++){
             for(int j = 0; j<3; j++){
                 board.getTable()[i][j] = ' ';
@@ -44,8 +46,8 @@ public class GameController implements Serializable {
     }
 
     private char nextTurn(){
-        board.incrementTurnCounter();
-        if (board.getTurnCounter()%2==0)return O;
+        turnCounter++;
+        if (turnCounter%2==0)return O;
         return X;
     }
 
@@ -108,7 +110,7 @@ public class GameController implements Serializable {
             return getWinner(turn);
 
         // DRAW
-        if (board.getTurnCounter()==9)
+        if (turnCounter==9)
             return GameStatusCode.DRAW;
 
         // CONTINUE

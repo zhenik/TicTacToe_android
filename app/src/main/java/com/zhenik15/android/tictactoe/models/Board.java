@@ -9,7 +9,7 @@ public class Board implements Serializable{
     public static final String TAG = "Board:> ";
 
     private char[][] table;
-    private int turnCounter;
+//    private int turnCounter;
 
     public Board(){
         table = new char[3][3];
@@ -21,15 +21,16 @@ public class Board implements Serializable{
         return table;
     }
 
-    public void incrementTurnCounter(){
-        turnCounter++;
-    }
+//    public void incrementTurnCounter(){
+//        turnCounter++;
+//    }
+//
+//    public int getTurnCounter() {
+//        return turnCounter;
+//    }
+//
+//    public void setTurnCounter(int counter){
+//        this.turnCounter=counter;
+//    }
 
-    public int getTurnCounter() {
-        return turnCounter;
-    }
-
-    public void setTurnCounter(int counter){
-        this.turnCounter=counter;
-    }
 }
