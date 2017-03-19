@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhenik15.android.tictactoe.models.Board;
+import com.zhenik15.android.tictactoe.models.GameInfoService;
 import com.zhenik15.android.tictactoe.models.GameStatusCode;
 
 import java.io.Serializable;
@@ -18,31 +19,36 @@ public class GameController implements Serializable {
 
     public static final String TAG = "GameController:> ";
 
-    private Board board;
-    private Context context;
-
     private final char X = 'X';
     private final char O = 'O';
+    private final char EMPTY = ' ';
+
+    private Board board;
+    private Context context;
+    private GameInfoService gameInfoService;
     private int turnCounter;
 
-    public GameController(Board board, Context context){
-
+    public GameController(Board board, Context context, GameInfoService gameInfoService){
         this.board=board;
         this.context =context;
+        this.gameInfoService = gameInfoService;
+
+//        this.gameInfoService.initNames();
+//        this.gameInfoService.showNavigationButtons();
     }
 
     public void resetGameBoard(){
         turnCounter=0;
         for(int i = 0; i<3; i++){
             for(int j = 0; j<3; j++){
-                board.getTable()[i][j] = ' ';
+                board.getTable()[i][j] = EMPTY;
                 Log.i(TAG, "|"+ board.getTable()[i][j]+"|");
             }
         }
     }
 
     private boolean isCellAvailable(int i, int j){
-        return board.getTable()[i][j]==' ';
+        return board.getTable()[i][j]==EMPTY;
     }
 
     private char nextTurn(){
@@ -51,13 +57,25 @@ public class GameController implements Serializable {
         return X;
     }
 
-    public void setCellListeners(TableLayout table){
+
+    public void setCellListeners(){
+        TableLayout table = board.getTableLayout();
         for(int i = 0; i<table.getChildCount(); i++){
             TableRow row = (TableRow) table.getChildAt(i);
             for(int j = 0; j<row.getChildCount(); j++){
                 TextView cell = (TextView) row.getChildAt(j);
                 cell.setOnClickListener(getGameClickListener(i, j, cell));
                 Log.i(TAG, "set up listener for "+cell.getText()+i+j);
+            }
+        }
+    }
+    private void unsetClickListeners(){
+        for(int i = 0; i<board.getTableLayout().getChildCount(); i++){
+            TableRow row = (TableRow) board.getTableLayout().getChildAt(i);
+            for(int j = 0; j<row.getChildCount(); j++){
+                TextView cell = (TextView) row.getChildAt(j);
+                cell.setOnClickListener(null);
+                Log.i(TAG, "unset listener for "+cell.getText()+i+j);
             }
         }
     }
@@ -81,12 +99,15 @@ public class GameController implements Serializable {
                 switch (checkGameState(turnSymbol)){
                     case GameStatusCode.DRAW:
                         Toast.makeText(context, "DRAW", Toast.LENGTH_SHORT).show();
+                        stopGame(GameStatusCode.DRAW);
                         break;
                     case GameStatusCode.X_WIN:
                         Toast.makeText(context, "X_WIN", Toast.LENGTH_SHORT).show();
+                        stopGame(GameStatusCode.X_WIN);
                         break;
                     case GameStatusCode.O_WIN:
                         Toast.makeText(context, "O_WIN", Toast.LENGTH_SHORT).show();
+                        stopGame(GameStatusCode.O_WIN);
                         break;
                 }
             }
@@ -165,7 +186,14 @@ public class GameController implements Serializable {
     }
 
 
+    private void stopGame(int statusCode){
+        unsetClickListeners();
+        switch (statusCode){
+            case GameStatusCode.DRAW:
+                break;
 
+        }
+    }
 
 
 
