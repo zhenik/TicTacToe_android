@@ -1,8 +1,8 @@
 package com.zhenik15.android.tictactoe.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,40 +27,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initAllElements();
     }
 
-    private void initAllElements(){
-        player1Name =(EditText)findViewById(R.id.main_player1);
-        player2Name =(EditText)findViewById(R.id.main_player2);
+    private void initAllElements() {
+        player1Name = (EditText) findViewById(R.id.main_player1);
+        player2Name = (EditText) findViewById(R.id.main_player2);
         initButton();
     }
-    private void initButton(){
-        startGameBtn=(Button)findViewById(R.id.main_start_game_btn);
+
+    private void initButton() {
+        startGameBtn = (Button) findViewById(R.id.main_start_game_btn);
         startGameBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.main_start_game_btn:
 
                 String name1 = player1Name.getText().toString();
                 String name2 = player2Name.getText().toString();
-                if (isUserNamesValid(name1,name2)){
-                    Log.i(TAG, ": names :"+ player1Name.getText() + "  -  " + player2Name.getText());
+                if (isUserNamesValid(name1, name2)) {
+                    Log.i(TAG, ": names :" + player1Name.getText() + "  -  " + player2Name.getText());
                     Intent intent = new Intent(getBaseContext(), GameActivity.class);
                     intent.putExtra("player1", new Player(name1));
                     intent.putExtra("player2", new Player(name2));
                     startActivity(intent);
-                }
-                else{
+                } else {
                     Toast.makeText(getApplicationContext(), "Not valid names", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
     }
 
-    private boolean isUserNamesValid(String name1, String name2){
+    private boolean isUserNamesValid(String name1, String name2) {
         boolean valid = !name1.isEmpty() && !name1.isEmpty() && !"".equals(name1) && !"".equals(name2);
-        if (valid)return true;
+        if (valid) return true;
         return false;
     }
 }

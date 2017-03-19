@@ -1,14 +1,17 @@
 package com.zhenik15.android.tictactoe.model;
+
 import java.io.Serializable;
 
 public class Player implements Serializable {
+
     public static final String TAG = "Player:> ";
+
     private String name;
     private int score;
 
-    public Player(String name){
-        this.name=name;
-        score=0;
+    public Player(String name) {
+        this.name = name;
+        score = 0;
     }
 
     public String getName() {
@@ -19,7 +22,7 @@ public class Player implements Serializable {
         return score;
     }
 
-    public int win(){
+    public int win() {
         return ++score;
     }
 }
