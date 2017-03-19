@@ -7,4 +7,7 @@
     <string name="cross_icon_img_description">cross icon</string>
     <string name="zero_icon_img_description">zero icon</string>
     <string name="space">" "</string>
+    <string name="save">Save</string>
+    <string name="exit">Exit</string>
+    <string name="new_match">New match</string>
 </resources>
