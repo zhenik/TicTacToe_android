@@ -1,4 +1,4 @@
-package com.zhenik15.android.tictactoe.view.activity;
+package com.zhenik15.android.tictactoe.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.zhenik15.android.tictactoe.R;
-import com.zhenik15.android.tictactoe.models.Player;
+import com.zhenik15.android.tictactoe.model.Player;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
