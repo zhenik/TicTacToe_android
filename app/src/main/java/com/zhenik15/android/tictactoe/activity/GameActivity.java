@@ -1,9 +1,11 @@
 package com.zhenik15.android.tictactoe.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,14 +18,14 @@ import com.zhenik15.android.tictactoe.model.GameSymbol;
 import com.zhenik15.android.tictactoe.model.Player;
 
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "GameActivity:> ";
 
     // Views
     private TextView scorePlayer1;
     private TextView scorePlayer2;
-    private View navigation;
+    private ViewGroup navigation;
 
     // Models
     private Board gameBoard;
@@ -42,6 +44,7 @@ public class GameActivity extends AppCompatActivity {
         initBoard();
         initNavigation();
         navigation.setVisibility(View.INVISIBLE);
+        setListenerNavigationButtons();
         resetGame();
     }
 
@@ -72,7 +75,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initNavigation() {
-        navigation = findViewById(R.id.game_nav_panel);
+        navigation = (ViewGroup) findViewById(R.id.game_nav_panel);
     }
 
     private void initBoard() {
@@ -86,6 +89,8 @@ public class GameActivity extends AppCompatActivity {
             TableRow row = (TableRow) table.getChildAt(i);
             for (int j = 0; j < row.getChildCount(); j++) {
                 TextView cell = (TextView) row.getChildAt(j);
+                // render empty template
+                cell.setText("");
                 cell.setOnClickListener(getGameClickListener(i, j, cell));
                 Log.i(TAG, "set up listener for " + cell.getText() + i + j);
             }
@@ -134,6 +139,31 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         };
+    }
+
+    /**
+     * NAVIGATION BAR
+     * */
+    private void setListenerNavigationButtons(){
+        for (int i=0;i<navigation.getChildCount();i++){
+            navigation.getChildAt(i).setOnClickListener(this);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.game_btn_new_game:
+                gameBoard.resetGameBoard();
+                turnCounter=0;
+                setCellListeners();
+                navigation.setVisibility(View.INVISIBLE);
+                break;
+            case R.id.game_btn_exit:
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 
     /**
@@ -239,7 +269,5 @@ public class GameActivity extends AppCompatActivity {
                 navigation.setVisibility(View.VISIBLE);
                 break;
         }
-
     }
-
 }
