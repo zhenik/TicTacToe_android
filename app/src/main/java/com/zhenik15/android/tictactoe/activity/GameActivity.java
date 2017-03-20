@@ -69,7 +69,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setScore(TextView scoreView, Player player) {
-        scoreView.setText(R.string.score + player.getScore());
+        scoreView.setText("Score: " + player.getScore());
     }
 
     private void updateScore() {
@@ -287,6 +287,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
 
     public Player getPlayerWithHighScore(){
         if (player1.getScore()>player2.getScore())return player1;
