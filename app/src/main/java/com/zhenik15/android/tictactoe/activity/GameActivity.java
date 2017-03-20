@@ -16,6 +16,7 @@ import com.zhenik15.android.tictactoe.model.Board;
 import com.zhenik15.android.tictactoe.model.GameStatusCode;
 import com.zhenik15.android.tictactoe.model.GameSymbol;
 import com.zhenik15.android.tictactoe.model.Player;
+import com.zhenik15.android.tictactoe.model.PlayerStatsService;
 
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
@@ -31,6 +32,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Board gameBoard;
     private Player player1;
     private Player player2;
+    private PlayerStatsService playerStatsService;
 
     // Game
     private int turnCounter;
@@ -46,6 +48,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         navigation.setVisibility(View.INVISIBLE);
         setListenerNavigationButtons();
         resetGame();
+        playerStatsService = new PlayerStatsService(getApplicationContext());
     }
 
     /**
@@ -66,7 +69,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setScore(TextView scoreView, Player player) {
-        scoreView.setText("Score: " + player.getScore());
+        scoreView.setText(R.string.score + player.getScore());
     }
 
     private void updateScore() {
@@ -121,6 +124,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     gameBoard.getTable()[i][j] = turnSymbol;
 //                    Log.i(TAG,": click cell "+ i+j + " : "+gameBoard[i][j]);
                     cell.setText(String.valueOf(turnSymbol));
+
+                    Log.i(TAG, "turn BEFORE step - "+turnCounter);
+                    turnCounter++;
+                    Log.i(TAG, "turn AFTER step - "+turnCounter);
                 }
 
                 switch (checkGameState(turnSymbol)) {
@@ -135,6 +142,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     case GameStatusCode.O_WIN:
                         Toast.makeText(getApplicationContext(), "O_WIN", Toast.LENGTH_SHORT).show();
                         stopGame(GameStatusCode.O_WIN);
+                        break;
+                    case GameStatusCode.CONTINUE:
                         break;
                 }
             }
@@ -151,14 +160,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    // TODO: implement save button
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.game_btn_new_game:
-                gameBoard.resetGameBoard();
-                turnCounter=0;
-                setCellListeners();
+                resetGame();
                 navigation.setVisibility(View.INVISIBLE);
                 break;
             case R.id.game_btn_exit:
@@ -166,7 +172,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.game_btn_save:
-                Log.i(TAG, "save to file");
+                Player winner = getPlayerWithHighScore();
+                if (winner!=null){
+                    playerStatsService.appendToFile(winner);
+                    playerStatsService.optimizeFile();
+                    Log.i(TAG, "save to file");
+                    Toast.makeText(getApplicationContext(), winner.getName()+" - saved!!!", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
@@ -177,14 +189,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void resetGame() {
         turnCounter = 0;
+        Log.i(TAG, "turnCounter INIT - "+turnCounter);
         gameBoard.resetGameBoard();
         setCellListeners();
     }
 
 
     private char nextTurn() {
-        turnCounter++;
-        if (turnCounter % 2 == 0) return GameSymbol.O;
+        if (turnCounter % 2 != 0) return GameSymbol.O;
         return GameSymbol.X;
     }
 
@@ -274,5 +286,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 navigation.setVisibility(View.VISIBLE);
                 break;
         }
+    }
+
+    public Player getPlayerWithHighScore(){
+        if (player1.getScore()>player2.getScore())return player1;
+        else if(player1.getScore()==player2.getScore())return null;
+        else return player2;
     }
 }
