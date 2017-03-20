@@ -15,9 +15,14 @@ import com.zhenik15.android.tictactoe.model.Player;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "MainActivity:> ";
+
+    private static final String PLAYER1 = "player1";
+    private static final String PLAYER2 = "player2";
+
     private Button startGameBtn;
     private EditText player1Name;
     private EditText player2Name;
+
 
 
     @Override
@@ -48,8 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (isUserNamesValid(name1, name2)) {
                     Log.i(TAG, ": names :" + player1Name.getText() + "  -  " + player2Name.getText());
                     Intent intent = new Intent(getBaseContext(), GameActivity.class);
-                    intent.putExtra("player1", new Player(name1));
-                    intent.putExtra("player2", new Player(name2));
+                    intent.putExtra(PLAYER1, new Player(name1));
+                    intent.putExtra(PLAYER2, new Player(name2));
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "Not valid names", Toast.LENGTH_SHORT).show();
@@ -58,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * YODA-style of equal
+     * */
     private boolean isUserNamesValid(String name1, String name2) {
         boolean valid = !name1.isEmpty() && !name1.isEmpty() && !"".equals(name1) && !"".equals(name2);
         if (valid) return true;
