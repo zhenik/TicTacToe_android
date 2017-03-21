@@ -1,11 +1,14 @@
 package com.zhenik15.android.tictactoe.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -13,10 +16,10 @@ import android.widget.Toast;
 
 import com.zhenik15.android.tictactoe.R;
 import com.zhenik15.android.tictactoe.model.Board;
-import com.zhenik15.android.tictactoe.model.util.GameStatusCode;
-import com.zhenik15.android.tictactoe.model.util.GameSymbol;
 import com.zhenik15.android.tictactoe.model.Player;
 import com.zhenik15.android.tictactoe.model.PlayerStatsService;
+import com.zhenik15.android.tictactoe.model.util.GameStatusCode;
+import com.zhenik15.android.tictactoe.model.util.GameSymbol;
 
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
@@ -27,6 +30,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private TextView scorePlayer1;
     private TextView scorePlayer2;
     private ViewGroup navigation;
+
+    private RelativeLayout player1Info;
+    private RelativeLayout player2Info;
+    private Drawable marker;
 
     // Models
     private Board gameBoard;
@@ -47,13 +54,24 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         initNavigation();
         navigation.setVisibility(View.INVISIBLE);
         setListenerNavigationButtons();
+        initInfos();
         resetGame();
         playerStatsService = new PlayerStatsService(getApplicationContext());
+
     }
+
 
     /**
      * SET & INIT  methods
      */
+    private void initInfos() {
+        player1Info = (RelativeLayout) findViewById(R.id.game_player1_info);
+        player2Info = (RelativeLayout) findViewById(R.id.game_player2_info);
+        marker = getResources().getDrawable(R.drawable.turn_border, getTheme());
+//        changeMarker();
+//        player1Info.setBackground(getResources().getDrawable(R.drawable.turn_border, getTheme()));
+//        player1Info.setBackground(null);
+    }
 
     private void initPlayers() {
         player1 = (Player) getIntent().getSerializableExtra(MainActivity.PLAYER1);
@@ -123,11 +141,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 //                    Log.i(TAG, "|turn=|"+turnSymbol+"|");
                     gameBoard.getTable()[i][j] = turnSymbol;
 //                    Log.i(TAG,": click cell "+ i+j + " : "+gameBoard[i][j]);
+                    if (turnSymbol == GameSymbol.X)
+                        cell.setTextColor(Color.parseColor("#ffcc0000"));
+                    if (turnSymbol == GameSymbol.O)
+                        cell.setTextColor(Color.parseColor("#ff99cc00"));
                     cell.setText(String.valueOf(turnSymbol));
 
-                    Log.i(TAG, "turn BEFORE step - "+turnCounter);
+                    Log.i(TAG, "turn BEFORE step - " + turnCounter);
                     turnCounter++;
-                    Log.i(TAG, "turn AFTER step - "+turnCounter);
+                    changeMarker();
+                    Log.i(TAG, "turn AFTER step - " + turnCounter);
                 }
 
                 switch (checkGameState(turnSymbol)) {
@@ -152,17 +175,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * NAVIGATION BAR
-     * */
+     */
 
-    private void setListenerNavigationButtons(){
-        for (int i=0;i<navigation.getChildCount();i++){
+    private void setListenerNavigationButtons() {
+        for (int i = 0; i < navigation.getChildCount(); i++) {
             navigation.getChildAt(i).setOnClickListener(this);
         }
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.game_btn_new_game:
                 resetGame();
                 navigation.setVisibility(View.INVISIBLE);
@@ -173,11 +196,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.game_btn_save:
                 Player winner = getPlayerWithHighScore();
-                if (winner!=null){
+                if (winner != null) {
                     playerStatsService.appendToFile(winner);
                     playerStatsService.optimizeFile();
                     Log.i(TAG, "save to file");
-                    Toast.makeText(getApplicationContext(), winner.getName()+" - saved!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), winner.getName() + " - saved!!!", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -189,9 +212,24 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void resetGame() {
         turnCounter = 0;
-        Log.i(TAG, "turnCounter INIT - "+turnCounter);
+        changeMarker();
+        Log.i(TAG, "turnCounter INIT - " + turnCounter);
         gameBoard.resetGameBoard();
         setCellListeners();
+    }
+
+    /**
+     * Mark user which turn is now
+     */
+    private void changeMarker() {
+        if (turnCounter % 2 == 0) {
+            player2Info.setBackground(marker);
+            player1Info.setBackground(null);
+        } else {
+            player1Info.setBackground(marker);
+            player2Info.setBackground(null);
+        }
+
     }
 
 
@@ -289,9 +327,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public Player getPlayerWithHighScore(){
-        if (player1.getScore()>player2.getScore())return player1;
-        else if(player1.getScore()==player2.getScore())return null;
+    public Player getPlayerWithHighScore() {
+        if (player1.getScore() > player2.getScore()) return player1;
+        else if (player1.getScore() == player2.getScore()) return null;
         else return player2;
     }
 }
