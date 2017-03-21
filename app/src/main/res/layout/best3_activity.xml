@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:orientation="vertical"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,22 +19,13 @@
 
         <TextView
             android:id="@+id/best3_player1_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Player"
-            android:textSize="30sp"/>
+            style="@style/Best3_name"/>
 
         <TextView
             android:id="@+id/best3_player1_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="35dp"
-            android:text="8"
-            android:textSize="40sp"/>
+            style="@style/Best3_score"/>
 
     </RelativeLayout>
 
@@ -51,55 +43,37 @@
 
         <TextView
             android:id="@+id/best3_player2_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Player"
-            android:textSize="30sp"/>
+            style="@style/Best3_name"/>
 
         <TextView
             android:id="@+id/best3_player2_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="35dp"
-            android:text="8"
-            android:textSize="40sp"/>
+            style="@style/Best3_score"/>
 
     </RelativeLayout>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/best3_3rd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/third_place"
-        app:srcCompat="@drawable/place_3rd"/>
+        <ImageView
+            android:id="@+id/best3_3rd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/third_place"
+            app:srcCompat="@drawable/place_3rd"/>
 
-    <TextView
-        android:id="@+id/best3_player3_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Player"
-        android:textSize="30sp"/>
+        <TextView
+            android:id="@+id/best3_player3_name"
+            style="@style/Best3_name"/>
 
-    <TextView
-        android:id="@+id/best3_player3_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="35dp"
-        android:text="8"
-        android:textSize="40sp"/>
+        <TextView
+            android:id="@+id/best3_player3_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Best3_score"/>
 
-</RelativeLayout>
+    </RelativeLayout>
 
 </LinearLayout>
