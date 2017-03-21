@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.zhenik15.android.tictactoe.R;
 import com.zhenik15.android.tictactoe.model.Board;
-import com.zhenik15.android.tictactoe.model.GameStatusCode;
-import com.zhenik15.android.tictactoe.model.GameSymbol;
+import com.zhenik15.android.tictactoe.model.util.GameStatusCode;
+import com.zhenik15.android.tictactoe.model.util.GameSymbol;
 import com.zhenik15.android.tictactoe.model.Player;
 import com.zhenik15.android.tictactoe.model.PlayerStatsService;
 

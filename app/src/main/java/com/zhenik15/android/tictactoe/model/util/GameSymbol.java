@@ -1,4 +1,4 @@
-package com.zhenik15.android.tictactoe.model;
+package com.zhenik15.android.tictactoe.model.util;
 
 public abstract class GameSymbol {
     public static final char X = 'X';

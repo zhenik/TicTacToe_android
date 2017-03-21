@@ -28,14 +28,17 @@ public class PlayerStatsService {
     }
 
     /**
-     * Append to file new lines in format ->
-     *      'Player name' / 'Player score'
+     * Append to file new lines ->
+     * line format -> 'Player name' / 'Player score'
      * */
     public void appendToFile(Player player) {
 
         // open stream in try-with-resources
         try (BufferedWriter bw =
-                     new BufferedWriter(new OutputStreamWriter(context.openFileOutput(FILENAME, MODE_PRIVATE | MODE_APPEND)))) {
+                     new BufferedWriter(
+                             new OutputStreamWriter(
+                                     context.openFileOutput(FILENAME, MODE_PRIVATE | MODE_APPEND)))
+        ){
 
             // append
             bw.append(player.getName() + "/" + player.getScore() + "\n");
@@ -48,9 +51,9 @@ public class PlayerStatsService {
     }
 
     /**
-     * Optimize file (recreate file with only 3 lines):
+     * Optimize file :
      *      sort players by score DESC
-     *      delete rest lines if more than 3
+     *      delete rest lines if more than 3 (recreate file with only 3 lines)
      * */
     public void optimizeFile() {
         List<Player> list = getPlayerListFromFile();
@@ -68,9 +71,10 @@ public class PlayerStatsService {
 
     /**
      * Parser for file, return list of players
+     * line format -> 'Player name' / 'Player score'
      * */
     public List<Player> getPlayerListFromFile() {
-        String str = "";
+        String str;
         List<Player> players = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput(FILENAME)))) {

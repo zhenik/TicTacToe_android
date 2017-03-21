@@ -3,6 +3,8 @@ package com.zhenik15.android.tictactoe.model;
 import android.util.Log;
 import android.widget.TableLayout;
 
+import com.zhenik15.android.tictactoe.model.util.GameSymbol;
+
 import java.io.Serializable;
 
 public class Board implements Serializable {
