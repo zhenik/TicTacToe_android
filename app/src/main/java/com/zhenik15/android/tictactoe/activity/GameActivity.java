@@ -159,11 +159,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         stopGame(GameStatusCode.DRAW);
                         break;
                     case GameStatusCode.X_WIN:
-                        Toast.makeText(getApplicationContext(), "X_WIN", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "X___WIN", Toast.LENGTH_SHORT).show();
                         stopGame(GameStatusCode.X_WIN);
                         break;
                     case GameStatusCode.O_WIN:
-                        Toast.makeText(getApplicationContext(), "O_WIN", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "O___WIN", Toast.LENGTH_SHORT).show();
                         stopGame(GameStatusCode.O_WIN);
                         break;
                     case GameStatusCode.CONTINUE:
