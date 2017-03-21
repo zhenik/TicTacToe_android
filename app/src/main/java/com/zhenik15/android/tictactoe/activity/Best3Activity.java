@@ -16,6 +16,7 @@ import java.util.List;
 public class Best3Activity extends AppCompatActivity {
 
     public static final String TAG = "Best3Activity:> ";
+
     private List<TextView> names;
     private List<TextView> scores;
     private PlayerStatsService pss;
@@ -30,6 +31,7 @@ public class Best3Activity extends AppCompatActivity {
         setNamesScore();
     }
 
+    // http://stackoverflow.com/questions/15686555/display-back-button-on-action-bar
     @Override
     public boolean onSupportNavigateUp(){
         finish();
