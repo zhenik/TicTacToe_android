@@ -19,6 +19,8 @@
 
         <activity android:name=".activity.GameActivity">
         </activity>
+        <activity android:name=".activity.Best3Activity">
+        </activity>
     </application>
 
 </manifest>
