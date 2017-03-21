@@ -2,8 +2,15 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
     <color name="gray">#d2d2d2</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="background_activity">#DCE86B</color>
+    <color name="font_color">#6752D9</color>
+    <color name="btn_color_background">#E84676</color>
+    <color name="table_background">#FCC214</color>
+    <color name="red">#ffcc0000</color>
+    <color name="green">#ff99cc00</color>
+
 </resources>
