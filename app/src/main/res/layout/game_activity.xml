@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
+              android:id="@+id/game_main_view"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-    android:id="@+id/game_main_view">
+              android:background="@color/background_activity"
+              android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/game_info"
         android:layout_width="match_parent"
         android:layout_height="120dp"
+        android:layout_marginTop="10dp"
         android:baselineAligned="false"
         android:orientation="horizontal">
 
@@ -23,30 +25,33 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:layout_gravity="top|center_horizontal"
+                style="@style/Player_icon_symbol"
                 android:contentDescription="@string/cross_icon_img_description"
-                app:srcCompat="@android:drawable/btn_dialog"/>
+                app:srcCompat="@drawable/circle"
+                />
 
             <TextView
                 android:id="@+id/game_player1_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imageView"
-                android:text=""
+                android:fontFamily="casual"
                 android:textAlignment="center"
-                android:textSize="20sp"/>
+                android:textAppearance="@android:style/TextAppearance.Holo.Widget.EditText"
+                android:textColor="@color/font_color"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/game_player1_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/game_player1_name"
+                android:fontFamily="casual"
                 android:text=""
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Holo.Widget.EditText"
+                android:textColor="@color/font_color"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -59,29 +64,32 @@
 
             <ImageView
                 android:id="@+id/imageView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:layout_gravity="top|center_horizontal"
+                style="@style/Player_icon_symbol"
                 android:contentDescription="@string/zero_icon_img_description"
-                app:srcCompat="@android:drawable/btn_dialog"/>
+                app:srcCompat="@drawable/cross"/>
 
             <TextView
                 android:id="@+id/game_player2_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imageView1"
+                android:fontFamily="casual"
                 android:text=""
                 android:textAlignment="center"
-                android:textSize="20sp"/>
+                android:textAppearance="@android:style/TextAppearance.Holo.Widget.EditText"
+                android:textColor="@color/font_color"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/game_player2_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/game_player2_name"
-                android:textAlignment="center"/>
+                android:fontFamily="casual"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Holo.Widget.EditText"
+                android:textColor="@color/font_color"/>
         </RelativeLayout>
 
     </LinearLayout>
@@ -96,12 +104,14 @@
             android:id="@+id/row1"
             style="@style/Row"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <TextView
                 android:id="@+id/cell_11"
                 style="@style/Cell"
-                android:layout_column="0">
+                android:layout_column="0"
+                >
 
             </TextView>
 
@@ -136,7 +146,8 @@
             <TextView
                 android:id="@+id/cell_22"
                 style="@style/Cell"
-                android:layout_column="1">
+                android:layout_column="1"
+                >
 
             </TextView>
 
@@ -187,6 +198,7 @@
 
         <Button
             android:id="@+id/game_btn_new_game"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -194,6 +206,7 @@
 
         <Button
             android:id="@+id/game_btn_save"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -201,6 +214,7 @@
 
         <Button
             android:id="@+id/game_btn_exit"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
