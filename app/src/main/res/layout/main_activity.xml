@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.MainActivity"
+    android:background="@color/background_activity">
 
     <TextView
         android:id="@+id/main_game_name"
@@ -13,35 +14,38 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
+        android:fontFamily="cursive"
         android:text="@string/tic_tac_toe"
         android:textAlignment="center"
-        android:textSize="24sp"/>
+        android:textAllCaps="false"
+        android:textAppearance="@android:style/TextAppearance.Holo.Widget.EditText"
+        android:textColor="@color/font_color"
+        android:textSize="40sp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/main_player1"
+        style="@style/Input_userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/main_game_name"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:ems="10"
-        android:hint="@string/player_1_name"
-        android:inputType="textPersonName"
-        />
+        android:layout_marginTop="54dp"
+        android:fontFamily="casual"
+        android:hint="@string/player_1_name"/>
 
     <EditText
         android:id="@+id/main_player2"
+        style="@style/Input_userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/main_player1"
-        android:layout_centerVertical="true"
-        android:ems="10"
-        android:hint="@string/player_2_name"
-        android:inputType="textPersonName"
-        />
+        android:fontFamily="casual"
+        android:hint="@string/player_2_name"/>
 
     <Button
         android:id="@+id/main_start_game_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/main_player2"
@@ -51,11 +55,12 @@
 
     <Button
         android:id="@+id/main_top3_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/main_start_game_btn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="30dp"
         android:text="@string/best_3_players"/>
 
 
