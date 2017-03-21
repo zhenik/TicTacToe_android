@@ -56,8 +56,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
      */
 
     private void initPlayers() {
-        player1 = (Player) getIntent().getSerializableExtra("player1");
-        player2 = (Player) getIntent().getSerializableExtra("player2");
+        player1 = (Player) getIntent().getSerializableExtra(MainActivity.PLAYER1);
+        player2 = (Player) getIntent().getSerializableExtra(MainActivity.PLAYER2);
 
         ((TextView) findViewById(R.id.game_player1_name)).setText(player1.getName());
         ((TextView) findViewById(R.id.game_player2_name)).setText(player2.getName());
