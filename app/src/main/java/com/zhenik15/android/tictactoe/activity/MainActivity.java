@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String PLAYER2 = "player2";
 
     private Button startGameBtn;
+    private Button top3Btn;
     private EditText player1Name;
     private EditText player2Name;
 
@@ -35,12 +36,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initAllElements() {
         player1Name = (EditText) findViewById(R.id.main_player1);
         player2Name = (EditText) findViewById(R.id.main_player2);
-        initButton();
+        initButtons();
     }
 
-    private void initButton() {
+    private void initButtons() {
         startGameBtn = (Button) findViewById(R.id.main_start_game_btn);
         startGameBtn.setOnClickListener(this);
+        top3Btn = (Button)findViewById(R.id.main_top3_btn);
+        top3Btn.setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     Toast.makeText(getApplicationContext(), "Not valid names", Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case R.id.main_top3_btn:
+
+                Intent intent = new Intent(getBaseContext(), Best3Activity.class);
+                startActivity(intent);
                 break;
         }
     }
