@@ -11,13 +11,17 @@ import android.widget.Toast;
 
 import com.zhenik15.android.tictactoe.R;
 import com.zhenik15.android.tictactoe.model.Player;
-
+/**
+ * Licences
+ * 1. http://www.freepik.com/macrovector    -> best3 medals
+ * 2. http://www.freepik.com/flaticon       -> launch icon
+ * */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "MainActivity:> ";
 
-    private static final String PLAYER1 = "player1";
-    private static final String PLAYER2 = "player2";
+    public static final String PLAYER1 = "player1";
+    public static final String PLAYER2 = "player2";
 
     private Button startGameBtn;
     private Button top3Btn;
