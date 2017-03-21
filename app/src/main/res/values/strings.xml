@@ -11,4 +11,7 @@
     <string name="exit">Exit</string>
     <string name="new_match">New match</string>
     <string name="best_3_players">BEST 3 PLAYERS</string>
+    <string name="second_place">Second place</string>
+    <string name="first_place">First place</string>
+    <string name="third_place">Third place</string>
 </resources>
