@@ -40,6 +40,8 @@
         <item name="android:maxLength">10</item>
         <!--<item name="android:text"> </item>-->
         <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Best3_score">
