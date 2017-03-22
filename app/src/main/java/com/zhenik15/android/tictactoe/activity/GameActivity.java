@@ -22,7 +22,14 @@ import com.zhenik15.android.tictactoe.model.util.ApplicationPojoFactory;
 import com.zhenik15.android.tictactoe.model.util.GameStatusCode;
 import com.zhenik15.android.tictactoe.model.util.GameSymbol;
 
-
+/**
+ *  Class represent game
+ *  implements OnClickListener interface,
+ *  for bottom button navigation bar
+ *
+ *  Game loop in method getGameClickListener
+ *
+ * */
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "GameActivity:> ";
@@ -130,6 +137,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     *  returning LISTENER CONTAINS MAIN GAME LOOP
+     */
     //http://stackoverflow.com/questions/10614696/how-to-pass-parameters-to-onclicklistener/10614751
     public View.OnClickListener getGameClickListener(final int i, final int j, final TextView cell) {
         return new View.OnClickListener() {
