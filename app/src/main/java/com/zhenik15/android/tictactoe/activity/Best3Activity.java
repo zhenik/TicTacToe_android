@@ -13,7 +13,13 @@ import com.zhenik15.android.tictactoe.model.util.ApplicationPojoFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ *  Class represent information about
+ *  3 best players (DESC sort by score)
+ *  Aggregate PlayerStatsService ->
+ *      fetch data
+ *
+ * */
 public class Best3Activity extends AppCompatActivity {
 
     public static final String TAG = "Best3Activity:> ";
