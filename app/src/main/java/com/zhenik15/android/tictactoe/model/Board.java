@@ -6,7 +6,9 @@ import android.widget.TableLayout;
 import com.zhenik15.android.tictactoe.model.util.GameSymbol;
 
 import java.io.Serializable;
-
+/**
+ * Class represent game board entity
+ * */
 public class Board implements Serializable {
 
     public static final String TAG = "Board:> ";
