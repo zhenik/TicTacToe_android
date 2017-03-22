@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.zhenik15.android.tictactoe.R;
 import com.zhenik15.android.tictactoe.model.Player;
+import com.zhenik15.android.tictactoe.model.util.ApplicationPojoFactory;
+
 /**
  * Licences
  * 1. http://www.freepik.com/macrovector    -> best3 medals
@@ -60,8 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (isUserNamesValid(name1, name2)) {
                     Log.i(TAG, ": names :" + player1Name.getText() + "  -  " + player2Name.getText());
                     Intent intent = new Intent(getBaseContext(), GameActivity.class);
-                    intent.putExtra(PLAYER1, new Player(name1));
-                    intent.putExtra(PLAYER2, new Player(name2));
+                    intent.putExtra(PLAYER1, ApplicationPojoFactory.getPlayerInstance(name1));
+                    intent.putExtra(PLAYER2, ApplicationPojoFactory.getPlayerInstance(name2));
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "Not valid names", Toast.LENGTH_SHORT).show();

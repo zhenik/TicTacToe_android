@@ -18,6 +18,7 @@ import com.zhenik15.android.tictactoe.R;
 import com.zhenik15.android.tictactoe.model.Board;
 import com.zhenik15.android.tictactoe.model.Player;
 import com.zhenik15.android.tictactoe.model.PlayerStatsService;
+import com.zhenik15.android.tictactoe.model.util.ApplicationPojoFactory;
 import com.zhenik15.android.tictactoe.model.util.GameStatusCode;
 import com.zhenik15.android.tictactoe.model.util.GameSymbol;
 
@@ -56,7 +57,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setListenerNavigationButtons();
         initInfos();
         resetGame();
-        playerStatsService = new PlayerStatsService(getApplicationContext());
+        playerStatsService = ApplicationPojoFactory.getPlayerStatsServiceInstance(getApplicationContext());
 
     }
 
@@ -101,7 +102,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initBoard() {
         TableLayout table = (TableLayout) findViewById(R.id.game_board);
-        gameBoard = new Board(table);
+        gameBoard = ApplicationPojoFactory.getBoardInstance(table);
     }
 
     public void setCellListeners() {

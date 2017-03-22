@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.zhenik15.android.tictactoe.R;
 import com.zhenik15.android.tictactoe.model.Player;
 import com.zhenik15.android.tictactoe.model.PlayerStatsService;
+import com.zhenik15.android.tictactoe.model.util.ApplicationPojoFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class Best3Activity extends AppCompatActivity {
         setContentView(R.layout.best3_activity);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initTextViews();
-        pss = new PlayerStatsService(getApplicationContext());
+        pss = ApplicationPojoFactory.getPlayerStatsServiceInstance(getApplicationContext());
         setNamesScore();
     }
 

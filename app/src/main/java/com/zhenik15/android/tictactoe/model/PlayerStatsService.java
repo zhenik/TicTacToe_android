@@ -3,6 +3,8 @@ package com.zhenik15.android.tictactoe.model;
 import android.content.Context;
 import android.util.Log;
 
+import com.zhenik15.android.tictactoe.model.util.ApplicationPojoFactory;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -82,7 +84,7 @@ public class PlayerStatsService {
                 Log.d(LOG_TAG, str);
                 String[] l = str.split("/");
                 if (l.length == 2) {
-                    Player player = new Player(l[0], Integer.parseInt(l[1]));
+                    Player player = ApplicationPojoFactory.getPlayerInstance(l[0], Integer.parseInt(l[1]));
                     players.add(player);
                 }
             }
