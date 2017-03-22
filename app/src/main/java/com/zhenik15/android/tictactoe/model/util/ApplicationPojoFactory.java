@@ -7,9 +7,14 @@ import com.zhenik15.android.tictactoe.model.Board;
 import com.zhenik15.android.tictactoe.model.Player;
 import com.zhenik15.android.tictactoe.model.PlayerStatsService;
 
-/**
- * Created by NIK on 22/03/2017.
- */
+
+ /**
+  * Abstract class represent factory for necessary POJO objects:
+  *     Player(String name)
+  *     PlayerStatsService(Context context)
+  *     Board(TableLayout tableLayout)
+  *
+  * */
 
 public abstract class ApplicationPojoFactory {
 
