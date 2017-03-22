@@ -18,8 +18,12 @@ import java.util.List;
 import static android.content.Context.MODE_APPEND;
 import static android.content.Context.MODE_PRIVATE;
 
-// http://startandroid.ru/ru/uroki/vse-uroki-spiskom/138-urok-75-hranenie-dannyh-rabota-s-fajlami.html
 
+/**
+ * Class represent service
+ * responsible for managing player statistic
+ * */
+// http://startandroid.ru/ru/uroki/vse-uroki-spiskom/138-urok-75-hranenie-dannyh-rabota-s-fajlami.html
 public class PlayerStatsService {
     final String LOG_TAG = "PlayerStatsService:> ";
     final String FILENAME = "file";
