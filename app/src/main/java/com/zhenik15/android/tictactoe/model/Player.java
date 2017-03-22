@@ -3,7 +3,9 @@ package com.zhenik15.android.tictactoe.model;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
-
+/**
+ * Class represent player entity
+ * */
 public class Player implements Serializable, Comparable<Player> {
 
     public static final String TAG = "Player:> ";
