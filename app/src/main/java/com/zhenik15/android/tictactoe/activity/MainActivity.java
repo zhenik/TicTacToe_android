@@ -17,6 +17,11 @@ import com.zhenik15.android.tictactoe.model.util.ApplicationPojoFactory;
  * Licences
  * 1. http://www.freepik.com/macrovector    -> best3 medals
  * 2. http://www.freepik.com/flaticon       -> launch icon
+ * 3. https://color.adobe.com/Copy-of-Kids-color-theme-9358169/?showPublished=true  -> palette
+ *
+ *  Class for launcher application activity
+ *  implements OnClickListener interface,
+ *  to setOnClickListener for 2 buttons
  * */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,8 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button top3Btn;
     private EditText player1Name;
     private EditText player2Name;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
