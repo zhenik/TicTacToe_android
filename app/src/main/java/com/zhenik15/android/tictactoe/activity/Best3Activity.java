@@ -58,7 +58,7 @@ public class Best3Activity extends AppCompatActivity {
     }
 
     private void setNamesScore(){
-        ArrayList<Player> players = (ArrayList<Player>) pss.getPlayerListFromFile();
+        ArrayList<Player> players = (ArrayList<Player>) pss.getPlayerListFromFile(PlayerStatsService.FILENAME);
         // LOG
         for (Player p : players){
             Log.i(TAG, p.getName()+" | "+p.getScore());

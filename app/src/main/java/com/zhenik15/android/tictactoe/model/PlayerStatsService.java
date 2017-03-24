@@ -25,8 +25,8 @@ import static android.content.Context.MODE_PRIVATE;
  * */
 // http://startandroid.ru/ru/uroki/vse-uroki-spiskom/138-urok-75-hranenie-dannyh-rabota-s-fajlami.html
 public class PlayerStatsService {
-    final String LOG_TAG = "PlayerStatsService:> ";
-    final String FILENAME = "file";
+    public static final String LOG_TAG = "PlayerStatsService:> ";
+    public static final String FILENAME = "file";
     private Context context;
 
     public PlayerStatsService(Context context) {
@@ -37,13 +37,13 @@ public class PlayerStatsService {
      * Append to file new lines ->
      * line format -> 'Player name' / 'Player score'
      * */
-    public void appendToFile(Player player) {
+    public void appendToFile(Player player, String fileName) {
 
         // open stream in try-with-resources
         try (BufferedWriter bw =
                      new BufferedWriter(
                              new OutputStreamWriter(
-                                     context.openFileOutput(FILENAME, MODE_PRIVATE | MODE_APPEND)))
+                                     context.openFileOutput(fileName, MODE_PRIVATE | MODE_APPEND)))
         ){
 
             // append
@@ -61,17 +61,17 @@ public class PlayerStatsService {
      *      sort players by score DESC
      *      delete rest lines if more than 3 (recreate file with only 3 lines)
      * */
-    public void optimizeFile() {
-        List<Player> list = getPlayerListFromFile();
+    public void optimizeFile(String fileName) {
+        List<Player> list = getPlayerListFromFile(fileName);
         Collections.sort(list);
-        context.deleteFile(FILENAME);
+        context.deleteFile(fileName);
         if (list.size() < 3) {
             for (Player p : list) {
-                appendToFile(p);
+                appendToFile(p, fileName);
             }
         } else {
             for (int i = 0; i < 3; i++)
-                appendToFile(list.get(i));
+                appendToFile(list.get(i), fileName);
         }
     }
 
@@ -79,11 +79,11 @@ public class PlayerStatsService {
      * Parser for file, return list of players
      * line format -> 'Player name' / 'Player score'
      * */
-    public List<Player> getPlayerListFromFile() {
+    public List<Player> getPlayerListFromFile(String fileName) {
         String str;
         List<Player> players = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput(FILENAME)))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput(fileName)))) {
             while ((str = br.readLine()) != null) {
                 Log.d(LOG_TAG, str);
                 String[] l = str.split("/");

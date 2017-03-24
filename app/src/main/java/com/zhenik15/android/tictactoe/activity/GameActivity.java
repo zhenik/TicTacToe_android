@@ -208,8 +208,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.game_btn_save:
                 Player winner = getPlayerWithHighScore();
                 if (winner != null) {
-                    playerStatsService.appendToFile(winner);
-                    playerStatsService.optimizeFile();
+                    playerStatsService.appendToFile(winner, PlayerStatsService.FILENAME);
+                    playerStatsService.optimizeFile(PlayerStatsService.FILENAME);
                     Log.i(TAG, "save to file");
                     Toast.makeText(getApplicationContext(), winner.getName() + " - saved!!!", Toast.LENGTH_SHORT).show();
                 }
