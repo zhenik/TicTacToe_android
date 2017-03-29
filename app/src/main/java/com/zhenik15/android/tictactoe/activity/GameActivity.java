@@ -56,7 +56,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initPlayers();
         initBoard();
         initNavigation();
@@ -68,6 +68,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    // http://stackoverflow.com/questions/15686555/display-back-button-on-action-bar
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
 
     /**
      * SET & INIT  methods
